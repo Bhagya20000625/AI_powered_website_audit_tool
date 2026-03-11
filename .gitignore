@@ -1,0 +1,43 @@
+# Environment
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pycache
+*.egg-info/
+.eggs/
+*.egg
+dist/
+build/
+.Python
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Node / React
+node_modules/
+dist/
+build/
+.npm/
+*.lock
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+logs/
