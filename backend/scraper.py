@@ -12,11 +12,6 @@ CTA_KEYWORDS = [
 
 
 def extract_metrics(url: str) -> tuple[PageMetrics, str]:
-    """
-    Fetches the page at the given URL and extracts all factual metrics.
-    Returns a PageMetrics object and the visible page text for AI analysis.
-    Raises ValueError for unreachable or non-HTML pages.
-    """
     try:
         response = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
         response.raise_for_status()
@@ -26,23 +21,19 @@ def extract_metrics(url: str) -> tuple[PageMetrics, str]:
     soup = BeautifulSoup(response.text, "html.parser")
     parsed_base = urlparse(url)
 
-    # --- Word Count ---
     body_text = soup.get_text(separator=" ", strip=True)
     word_count = len(body_text.split())
 
-    # --- Heading Counts ---
     h1_count = len(soup.find_all("h1"))
     h2_count = len(soup.find_all("h2"))
     h3_count = len(soup.find_all("h3"))
 
-    # --- CTA Count ---
     cta_count = 0
     for tag in soup.find_all(["a", "button"]):
         text = tag.get_text(strip=True).lower()
         if any(kw in text for kw in CTA_KEYWORDS):
             cta_count += 1
 
-    # --- Internal vs External Links ---
     internal_links = 0
     external_links = 0
     for a in soup.find_all("a", href=True):
@@ -54,13 +45,11 @@ def extract_metrics(url: str) -> tuple[PageMetrics, str]:
         else:
             external_links += 1
 
-    # --- Images & Missing Alt Text ---
     images = soup.find_all("img")
     image_count = len(images)
     missing_alt = sum(1 for img in images if not img.get("alt", "").strip())
     images_missing_alt_pct = round((missing_alt / image_count * 100), 1) if image_count > 0 else 0.0
 
-    # --- Meta Title & Description ---
     meta_title_tag = soup.find("title")
     meta_title = meta_title_tag.get_text(strip=True) if meta_title_tag else None
 
