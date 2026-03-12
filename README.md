@@ -160,6 +160,7 @@ npm run dev
 
 - **Pre-launch competitive readiness audit** — benchmark a new site directly against a competitor before going live, answering *"Are we ready to compete?"* rather than just *"Are we ready to launch?"* See the full concept below.
 - **AI-powered candidate screening** — apply the same audit engine to hiring: paste a portfolio URL + job requirements and receive a structured fit report with skill gaps and an overall match score. See the full concept below.
+- **Prompt versioning** — treat prompts as versioned artifacts rather than hardcoded strings. Each prompt version is registered in a central registry, and every audit log records which version produced the output. This enables A/B testing between prompt versions, rollback if a new version underperforms, and full reproducibility — given any historical audit, you can identify exactly which prompt generated it. As the tool evolves across audit modes (single page, competitor comparison, pre-launch readiness), each mode maintains its own versioned prompt chain independently.
 - **JavaScript rendering** — integrate Playwright or Puppeteer to handle SPAs and dynamically loaded content, capturing the full page as a user sees it
 - **Multi-page crawling** — extend the scraper to crawl a configurable depth, enabling site-wide audits and cross-page analysis (e.g. duplicate H1s, orphaned pages)
 - **Audit history** — persist results to a database so users can track improvements over time and compare audits across dates
