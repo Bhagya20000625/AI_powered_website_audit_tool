@@ -146,6 +146,27 @@ npm run dev
 
 ---
 
+## Trade-offs
+
+- **Single page only** — the tool audits one URL at a time with no crawling. This keeps the scope tight and the output focused, but means it can't assess site-wide patterns like internal linking structure across pages.
+- **Static scraping only** — uses `requests` + `BeautifulSoup`, so JavaScript-rendered content is not captured. Pages that rely heavily on client-side rendering will return incomplete metrics.
+- **No caching** — every audit makes a fresh scrape and a fresh AI call. For a demo tool this is fine, but at scale it would be inefficient for repeated audits of the same URL.
+- **LLM non-determinism** — even at temperature 0.3, AI output varies slightly between runs. Insights are grounded in metrics but phrasing and emphasis can shift. A production version would benefit from evaluation/validation against known benchmarks.
+- **Free tier constraints** — both Render (backend) and Groq (AI) are on free tiers, which means cold start delays on Render and rate limits on the AI. Acceptable for a submission, not for production.
+
+---
+
+## What I Would Improve With More Time
+
+- **JavaScript rendering** — integrate Playwright or Puppeteer to handle SPAs and dynamically loaded content, capturing the full page as a user sees it
+- **Multi-page crawling** — extend the scraper to crawl a configurable depth, enabling site-wide audits and cross-page analysis (e.g. duplicate H1s, orphaned pages)
+- **Audit history** — persist results to a database so users can track improvements over time and compare audits across dates
+- **Confidence scoring** — add a signal on each AI insight indicating how strongly it is supported by the extracted metrics, making it easier to prioritise findings
+- **Custom prompt profiles** — allow users to select an audit focus (e.g. SEO-heavy vs conversion-focused) which adjusts the system prompt weighting accordingly
+- **Structured evals** — build a lightweight evaluation harness to test prompt quality against a set of known pages, catching regressions when the prompt or model changes
+
+---
+
 ## Environment Variables
 
 ```
