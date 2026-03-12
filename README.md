@@ -158,12 +158,58 @@ npm run dev
 
 ## What I Would Improve With More Time
 
+- **Pre-launch competitive readiness audit** — benchmark a new site directly against a competitor before going live, answering *"Are we ready to compete?"* rather than just *"Are we ready to launch?"* See the full concept below.
+- **AI-powered candidate screening** — apply the same audit engine to hiring: paste a portfolio URL + job requirements and receive a structured fit report with skill gaps and an overall match score. See the full concept below.
 - **JavaScript rendering** — integrate Playwright or Puppeteer to handle SPAs and dynamically loaded content, capturing the full page as a user sees it
 - **Multi-page crawling** — extend the scraper to crawl a configurable depth, enabling site-wide audits and cross-page analysis (e.g. duplicate H1s, orphaned pages)
 - **Audit history** — persist results to a database so users can track improvements over time and compare audits across dates
 - **Confidence scoring** — add a signal on each AI insight indicating how strongly it is supported by the extracted metrics, making it easier to prioritise findings
 - **Custom prompt profiles** — allow users to select an audit focus (e.g. SEO-heavy vs conversion-focused) which adjusts the system prompt weighting accordingly
 - **Structured evals** — build a lightweight evaluation harness to test prompt quality against a set of known pages, catching regressions when the prompt or model changes
+
+---
+
+## Future Vision — AI-Powered Candidate Screening
+
+Another extension is applying the same audit engine to EIGHT25MEDIA's hiring process. A hiring manager pastes a candidate's portfolio URL alongside job requirements and receives a structured fit report:
+
+| Category | Score |
+|---|---|
+| Technical Skills Match | 78% |
+| Project Relevance | 65% |
+| Experience Level Fit | 82% |
+| Missing Requirements | React, AWS |
+| **Overall Fit Score** | **75 / 100** |
+
+Followed by an AI-generated summary explaining exact gaps and recommended interview focus areas.
+
+**Why it matters for EIGHT25MEDIA:**
+- Saves hours of manual portfolio review per open role
+- Ranks candidates against the same structured criteria, reducing bias
+- Highlights exact skill gaps so interviewers know what to probe
+- Scales effortlessly from 5 to 50 candidates with the same effort
+
+---
+
+## Future Vision — Pre-Launch Competitive Readiness Audit
+
+A natural evolution of the single-page audit is a **Pre-Launch Competitive Readiness Audit** — benchmarking a new site directly against its top competitor before going live. Rather than asking *"Is it ready to launch?"*, the more valuable question is: *"Are we ready to compete?"*
+
+**Side-by-Side Metric Comparison:**
+
+| Metric | Your Site | Competitor | Status |
+|---|---|---|---|
+| Word Count | 620 | 1,400 | ⚠️ Fix before launch |
+| H2 Count | 3 | 9 | ⚠️ Fix before launch |
+| CTA Count | 2 | 6 | ⚠️ Fix before launch |
+| Images Missing Alt | 40% | 5% | ❌ Critical — fix now |
+| Meta Description | Missing | Present | ❌ Critical — fix now |
+| Internal Links | 8 | 7 | ✅ Competitive |
+
+**Launch Readiness Score: 58/100 — Not Ready**
+
+**Why this is more valuable than a standard pre-launch checklist:**
+A generic checklist tells you if something exists. This tool tells you if what exists is good enough to win. For a web agency like EIGHT25MEDIA, that distinction is everything — clients don't just want a working website, they want a website that outperforms their competition from day one. This feature gives EIGHT25MEDIA a concrete, data-backed conversation with clients about why certain elements need more investment before launch, removing the subjectivity from those discussions entirely.
 
 ---
 
