@@ -108,9 +108,9 @@ AI_powered_website_audit_tool/
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate        # Windows
+venv\Scripts\activate        
 pip install -r requirements.txt
-cp .env.example .env         # Add your GROQ_API_KEY
+cp .env.example .env         
 uvicorn main:app --reload
 ```
 
