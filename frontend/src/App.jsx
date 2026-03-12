@@ -14,7 +14,7 @@ export default function App() {
     setError(null)
     setResult(null)
     try {
-      const res = await fetch('http://127.0.0.1:8000/audit', {
+      const res = await fetch('https://website-audit-backend-dhg9.onrender.com/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url }),
