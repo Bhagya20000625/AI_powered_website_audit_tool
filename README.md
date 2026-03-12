@@ -2,7 +2,8 @@
 
 An internal AI tool built for **EIGHT25MEDIA** to quickly evaluate marketing webpages and identify improvement opportunities across SEO, conversion optimization, content clarity, and UX.
 
-**Live Demo:** [https://website-audit-backend-dhg9.onrender.com](https://website-audit-backend-dhg9.onrender.com) (backend API)
+**Live Demo:** [https://ai-powered-website-audit-tool-j4zersh0y.vercel.app](https://ai-powered-website-audit-tool-j4zersh0y.vercel.app) (frontend)
+**Backend API:** [https://website-audit-backend-dhg9.onrender.com](https://website-audit-backend-dhg9.onrender.com)
 
 ---
 
