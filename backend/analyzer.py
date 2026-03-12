@@ -122,10 +122,19 @@ def analyze(metrics: PageMetrics, page_text: str) -> tuple[AIInsights, list[Reco
 
     raw_output = response.choices[0].message.content
 
-    data = json.loads(raw_output)
+    try:
+        data = json.loads(raw_output)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"AI returned malformed JSON: {e}. Raw output: {raw_output[:200]}")
 
-    insights = AIInsights(**data["insights"])
-    recommendations = [Recommendation(**r) for r in data["recommendations"]]
+    if "insights" not in data or "recommendations" not in data:
+        raise ValueError(f"AI response missing required fields. Keys found: {list(data.keys())}")
+
+    try:
+        insights = AIInsights(**data["insights"])
+        recommendations = [Recommendation(**r) for r in data["recommendations"]]
+    except Exception as e:
+        raise ValueError(f"AI response structure invalid: {e}")
 
     prompt_log = PromptLog(
         system_prompt=SYSTEM_PROMPT,
