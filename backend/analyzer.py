@@ -1,13 +1,13 @@
 import os
 import json
-import google.generativeai as genai
+from groq import Groq
 from dotenv import load_dotenv
 from models import PageMetrics, AIInsights, Recommendation, PromptLog
 
 load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-model = genai.GenerativeModel("gemini-2.0-flash")
+MODEL = "llama-3.3-70b-versatile"
 
 SYSTEM_PROMPT = """You are a senior web strategist and SEO analyst working for EIGHT25MEDIA,
 a marketing agency specializing in high-performing marketing websites focused on SEO,
@@ -110,15 +110,17 @@ def analyze(metrics: PageMetrics, page_text: str) -> tuple[AIInsights, list[Reco
     formatted = format_metrics_for_prompt(metrics)
     user_prompt = build_user_prompt(formatted, page_text)
 
-    response = model.generate_content(
-        f"{SYSTEM_PROMPT}\n\n{user_prompt}",
-        generation_config=genai.types.GenerationConfig(
-            temperature=0.3,
-            response_mime_type="application/json",
-        ),
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_prompt},
+        ],
+        temperature=0.3,
+        response_format={"type": "json_object"},
     )
 
-    raw_output = response.text
+    raw_output = response.choices[0].message.content
 
     data = json.loads(raw_output)
 
