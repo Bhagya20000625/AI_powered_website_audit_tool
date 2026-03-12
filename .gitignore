@@ -7,12 +7,9 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.pycache
 *.egg-info/
 .eggs/
 *.egg
-dist/
-build/
 .Python
 
 # Virtual Environment
@@ -20,12 +17,16 @@ venv/
 .venv/
 env/
 
-# Node / React
-node_modules/
+# Build outputs
 dist/
 build/
+
+# Node / React
+node_modules/
 .npm/
-*.lock
+
+# Vite
+frontend/.vite/
 
 # OS
 .DS_Store
@@ -38,6 +39,9 @@ desktop.ini
 *.suo
 *.user
 
+# Logs
+*.log
+logs/
 # Logs
 *.log
 logs/
